@@ -3,113 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>xsh</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="submit.css">
-    <script>
-        (function(designWidth, maxWidth) {
-            var doc = document,
-            win = window,
-            docEl = doc.documentElement,
-            remStyle = document.createElement("style"),
-            tid;
-            //浏览器竖屏与横屏转换的BUG。
-            function refreshRem() {
-                var width = docEl.getBoundingClientRect().width;
-                maxWidth = maxWidth || 540;
-                width>maxWidth && (width=maxWidth);
-                var rem = width * 100 / designWidth;
-                remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
-            }
-
-            if (docEl.firstElementChild) {
-                docEl.firstElementChild.appendChild(remStyle);
-            } else {
-                var wrap = doc.createElement("div");
-                wrap.appendChild(remStyle);
-                doc.write(wrap.innerHTML);
-                wrap = null;
-            }
-            //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
-            refreshRem();
-
-            win.addEventListener("resize", function() {
-                clearTimeout(tid); //防止执行两次
-                tid = setTimeout(refreshRem, 300);
-            }, false);
-
-            win.addEventListener("pageshow", function(e) {
-                if (e.persisted) { // 浏览器后退的时候重新计算
-                    clearTimeout(tid);
-                    tid = setTimeout(refreshRem, 300);
-                }
-            }, false);
-
-            if (doc.readyState === "complete") {
-                doc.body.style.fontSize = "16px";
-            } else {
-                doc.addEventListener("DOMContentLoaded", function(e) {
-                    doc.body.style.fontSize = "16px";
-                }, false);
-            }
-        })(375, 679);
-    </script>
     <script src="./check.js"></script>
+    <script>
+        var submit_form=document.getElementById("submit-form");
+        if(document.documentElement.clientWidth<=400){
+            submit_form.style.width="100%";
+        }
+    </script>
 </head>
 <body>
-    <form action="SubmitSucceed.html" class="submit-form" onsubmit="return checkAll()">
-        <div class="top">
-            <h2>广西民族大学相思湖网站</h2><h3>招新信息填报</h3>
-        </div>
-        <div class="txtb" id="college_class_name">
-            <input type="text" id="college_class_name" name="college_class_name" value="" onblur="checkCCN()">
-            <span class="span" id="college_class_name_span" value="" data-placeholder="学院与班级" onclick="" ><p id="CCNwarning"></p></span>
-        </div>
+        <form action="" class="submit-form" id="submit-form" onsubmit="return checkAll()">
+            <div class="top">
+                <h2>广西民族大学相思湖网站</h2>
+                <h3>招新信息填报</h3>
+            </div>
+            <div class="txtb" id="college_class_name">
+                <input type="text" id="college_class_name" name="college_class_name" value="" onblur="checkCCN()">
+                <span class="span" id="college_class_name_span" value="" data-placeholder="学院与班级" onclick="" ><p id="CCNwarning"></p></span>
+            </div>
 
-        <div class="txtb">
-            <input type="text" id="name1" name="name" value="" onblur="checkName()">
-            <span class="span" data-placeholder="姓名"><p id="Namewarning" on></p></span>
-        </div>
-        <div class="txtb">
-            <input type="text" id="sex" name="sex" vakue="" onblur="checkSex()">
-            <span class="span" data-placeholder="性别"><p id="Sexwarning"></p></span>
-         </div>
-        <div class="txtb">
-            <input type="text" id="qq_num" name="qq_num" value="" onblur="checkQQ()">
-            <span class="span" data-placeholder="QQ"><p id="QQwarning"></p></span>
-        </div>
-        <div class="txtb">
-            <input type="text" id="phone_num" name="phone_num" value="" onblur="checkPhone()">
-            <span class="span" data-placeholder="联系电话"><p id="PNwarning"></p></span>
-        </div>
-        <div class="txtb">
-            <input type="text" id="hoppy" name="hoppy" value="" onblur="checkHoppy()">
-            <span class="span" data-placeholder="爱好"><p id="Hoppywarning"></p></span>
-        </div>
-        <br><br><br>
+            <div class="txtb">
+                <input type="text" id="name1" name="name" value="" onblur="checkName()">
+                <span class="span" data-placeholder="姓名"><p id="Namewarning" on></p></span>
+            </div>
+            <div class="txtb">
+                <input type="text" id="sex" name="sex" vakue="" onblur="checkSex()">
+                <span class="span" data-placeholder="性别"><p id="Sexwarning"></p></span>
+            </div>
+            <div class="txtb">
+                <input type="text" id="qq_num" name="qq_num" value="" onblur="checkQQ()">
+                <span class="span" data-placeholder="QQ"><p id="QQwarning"></p></span>
+            </div>
+            <div class="txtb">
+                <input type="text" id="phone_num" name="phone_num" value="" onblur="checkPhone()">
+                <span class="span" data-placeholder="联系电话"><p id="PNwarning"></p></span>
+            </div>
+            <div class="txtb">
+                <input type="text" id="hoppy" name="hoppy" value="" onblur="checkHoppy()">
+                <span class="span" data-placeholder="爱好"><p id="Hoppywarning"></p></span>
+            </div>
+            <br><br><br>
 
-        <div class="box">
-            <h4>想加入的部门</h4>
-            <input type="checkbox" name="department" id="checkbox5" value="1" onclick="checkdepartment()"/><label for="checkbox5"">媒体部</label>
+            <div class="box">
+                <h4>想加入的部门</h4>
+                <input type="checkbox" name="department" id="checkbox5" value="1" onclick="checkdepartment()"/><label for="checkbox5">媒体部</label>
 
-            <input type="checkbox" name="department" id="checkbox6" value="2" onclick="checkdepartment()"/><label for="checkbox6" >采编部</label>
+                <input type="checkbox" name="department" id="checkbox6" value="2" onclick="checkdepartment()"/><label for="checkbox6" >采编部</label>
+                
+                <input type="checkbox" name="department" id="checkbox7" value="3" onclick="checkdepartment()"/><label for="checkbox7" >视频部</label>
+                <br>
+                <input type="checkbox" name="department" id="checkbox1" value="4" onclick="checkdepartment()"/><label for="checkbox1" >办公室</label>
             
-            <input type="checkbox" name="department" id="checkbox7" value="3" onclick="checkdepartment()"/><label for="checkbox7" >视频部</label>
-            <br>
-            <input type="checkbox" name="department" id="checkbox1" value="4" onclick="checkdepartment()"/><label for="checkbox1" >办公室</label>
+                <input type="checkbox" name="department" id="checkbox2" value="5" onclick="checkdepartment()"/><label for="checkbox2" >公关部</label>
+                <br>
+                <input type="checkbox" name="department" id="checkbox3" value="6" onclick="checkdepartment()"/><label for="checkbox3" >设计部</label>
         
-            <input type="checkbox" name="department" id="checkbox2" value="5" onclick="checkdepartment()"/><label for="checkbox2" >公关部</label>
-            <br>
-            <input type="checkbox" name="department" id="checkbox3" value="6" onclick="checkdepartment()"/><label for="checkbox3" >设计部</label>
-       
-            <input type="checkbox" name="department" id="checkbox4" value="7" onclick="checkdepartment()"/><label for="checkbox4" >技术部</label>
+                <input type="checkbox" name="department" id="checkbox4" value="7" onclick="checkdepartment()"/><label for="checkbox4" >技术部</label>
 
-            <span id="Departmentwarning" data-placeholder="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
-            
-        </div>
-       
-        <input type="submit" class="sub-btn" value="提交">
-    </form>
+                <span id="Departmentwarning" data-placeholder="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                
+            </div>
+        
+            <input type="submit" class="sub-btn" value="提交">
+        </form>
     <script type="text/javascript">
         $(".txtb input").on("focus",function(){
             $(this).addClass("focus");
@@ -119,5 +79,7 @@
                 $(this).removeClass("focus");
         });
     </script>
+
+    
 </body>
 </html>
