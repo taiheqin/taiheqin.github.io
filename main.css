@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    min-height: 110vh;
+    /* background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(55,227,181,1) 0%, rgba(78,228,126,0.54) 90% ); */
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 110vh;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(55,227,181,1) 0%, rgba(78,228,126,0.54) 90% );
+}
+/* 设计按钮样式 */
+#button{
+    position: absolute;
+    top:35px;
+    left:50%;
+}
+.buttona{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color:#fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+    background-size: 400%;
+    border-radius: 30px;
+    z-index: 1;
+}
+.buttona:hover{
+    animation: animate 8s linear infinite;
+}
+@keyframes animate{
+    0%{
+        background-position: 0%;
+    }
+    100%{
+        background-position: 400%;
+    }
+}
+.buttona:before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+    background-size: 400%;
+    border-radius: 40px;
+    opacity: 0;
+    transition: .5s;
+}
+.buttona:hover:before{
+    filter:blur(20px);
+    opacity: 1;
+    animation: animate 8s linear infinite;
+}
+/* 按钮结束 */
+
+.container{
+    max-width: 1100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: 0.5s;
+    top:80px;
+}
+.container .card #xsh #xshp{
+    font-weight:bold;
+    color:rgb(23, 168, 23);
+    font-size: 40px;
+}
+.container .card{
+    position: relative;
+    width:250px;
+    height: 300px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+    margin:10px 10px 0 0;
+}
+.container:hover .card{
+    /* filter:blur(5px); */
+    transform: scale(.9);
+}
+.container .card:hover{
+    filter:blur(0);
+    transform: scale(1);
+}
+.container .card:before{
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(226,240,254,1) 0%, rgba(255,247,228,1) 90% );
+    z-index: 1;
+    transition: .5s;
+}
+.container .card:hover:before{
+    background: #000;
+    transform: scaleY(1.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+.container .card .content{
+    text-align: center;
+    z-index: 2;
+    padding: 0 20px;
+    transition: .5s;
+}
+.container .card:hover .content{
+    color:#fff;
+}
+.container .card .content h2{
+    font-size: 3em;
+}
+.container .card .content p{
+    font-size: 0.9em;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
